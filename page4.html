@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 4 🔥</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4458;
+            margin-bottom: 10px;
+        }
+
+        .indice {
+            text-align: left;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            background: #ff4458;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ff4458;
+            margin-top: 10px;
+        }
+
+        .detail {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Question 4</h1>
+
+    <div class="indice">
+        <p>Quel est le nom du célèbre mur bâti sur toute la largeur nord de l’actuelle Angleterre (environ 117,5 km) ?</p>
+        <p>Il a été érigé par un empereur romain entre 122 et 127 après J.-C.</p>
+        <p><strong>Quel est son nom ?</strong></p>
+    </div>
+
+    <input type="text" id="reponse" placeholder="Ta réponse ici">
+    <button onclick="verifier()">Valider</button>
+
+    <p class="error hidden" id="erreur">Ce n’est pas ça… réessaie 😉</p>
+
+    <div class="detail hidden" id="detail">
+        <p>
+            Pourquoi cette question, haha ?<br>
+            Tout d’abord, elle me permet de partager avec toi l’une de mes passions : l’histoire.
+            C’est d’ailleurs ce que j’ai étudié pendant cinq ans en tant que médiéviste,
+            spécialiste de l’histoire religieuse préchrétienne nordique.<br><br>
+            Mais elle me permet aussi de partager une seconde passion : la marche à pied et la randonnée,
+            le plaisir d’admirer la nature. J’ai eu la chance de parcourir l’intégralité de ce mur lors d’un trek
+            d’une semaine avec mon frère, une semaine riche en émotions, en joie… et en cloches, haha !
+        </p>
+
+        <button onclick="suivant()">Continuer ➜</button>
+    </div>
+</div>
+
+<script>
+    function normaliser(texte) {
+        return texte
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]/g, "");
+    }
+
+    function verifier() {
+        const input = normaliser(document.getElementById("reponse").value);
+        const erreur = document.getElementById("erreur");
+        const detail = document.getElementById("detail");
+
+        const reponsesValides = [
+            normaliser("Le Mur d’Hadrien"),
+            normaliser("Mur d’Hadrien"),
+            normaliser("Hadrian's Wall")
+        ];
+
+        if (reponsesValides.includes(input)) {
+            erreur.classList.add("hidden");
+            detail.classList.remove("hidden");
+        } else {
+            erreur.classList.remove("hidden");
+        }
+    }
+
+    function suivant() {
+        window.location.href = "page5.html"; // redirige vers la question 5 (LaSemo)
+    }
+</script>
+
+</body>
+</html>

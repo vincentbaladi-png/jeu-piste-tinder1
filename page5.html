@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 5 🔥</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4458;
+            margin-bottom: 10px;
+        }
+
+        .indice {
+            text-align: left;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            background: #ff4458;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ff4458;
+            margin-top: 10px;
+        }
+
+        .detail {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Question 5</h1>
+
+    <div class="indice">
+        <p>Quel festival a lieu chaque été dans le parc d’Enghien ?</p>
+    </div>
+
+    <input type="text" id="reponse" placeholder="Ta réponse ici">
+    <button onclick="verifier()">Valider</button>
+
+    <p class="error hidden" id="erreur">Ce n’est pas ça… essaie encore 😉</p>
+
+    <div class="detail hidden" id="detail">
+        <p>
+            Pourquoi te parler de ce festival ? Non, malheureusement, je ne fais pas leur publicité…<br>
+            Tout simplement parce que presque chaque année, tu peux me retrouver émerveillé à chaque visite de ce parc,
+            riant avec mon groupe d’amis — mon unité de scouts. Oui, je suis un ancien chef scout et désormais membre de l’ASBL
+            de mon unité, qui a pour mission d’entretenir les locaux.<br><br>
+            Bref, si tu veux me voir tout sourire dans mon élément naturel : tente, copains et musique… prends tes billets !
+        </p>
+
+        <button onclick="suivant()">Continuer ➜</button>
+    </div>
+</div>
+
+<script>
+    function normaliser(texte) {
+        return texte
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]/g, "");
+    }
+
+    function verifier() {
+        const input = normaliser(document.getElementById("reponse").value);
+        const erreur = document.getElementById("erreur");
+        const detail = document.getElementById("detail");
+
+        const reponsesValides = [
+            normaliser("LaSemo")
+        ];
+
+        if (reponsesValides.includes(input)) {
+            erreur.classList.add("hidden");
+            detail.classList.remove("hidden");
+        } else {
+            erreur.classList.remove("hidden");
+        }
+    }
+
+    function suivant() {
+        window.location.href = "finale.html"; // page finale du jeu
+    }
+</script>
+
+</body>
+</html>

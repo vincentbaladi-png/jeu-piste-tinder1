@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Question 3 🔥</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4458;
+            margin-bottom: 10px;
+        }
+
+        .indice {
+            text-align: left;
+            font-size: 15px;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            background: #ff4458;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .error {
+            color: #ff4458;
+            margin-top: 10px;
+        }
+
+        .detail {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Question 3</h1>
+
+    <div class="indice">
+        <p>Devine mon film préféré, celui qui chaque année ravive mon cœur.</p>
+        <p>Indices :</p>
+        <ul>
+            <li>Il a obtenu 17 Oscars au total, cumulés sur plusieurs films de cet univers.</li>
+            <li>Inspiré d’un livre dont l’auteur a littéralement créé un genre littéraire décliné en jeux vidéo, films, séries, jeux de société...</li>
+            <li>L’histoire de ces films se concentre sur un objet magique.</li>
+            <li>Une réplique célèbre : « Attendez ma venue au premier rayon du cinquième jour, à l’aube, regardez vers l’ouest. »</li>
+        </ul>
+        <p><strong>Qui suis-je ?</strong></p>
+    </div>
+
+    <input type="text" id="reponse" placeholder="Ta réponse ici">
+    <button onclick="verifier()">Valider</button>
+
+    <p class="error hidden" id="erreur">Ce n’est pas ça… essaie encore 😎</p>
+
+    <div class="detail hidden" id="detail">
+        <p>
+            Oui, cette trilogie fait partie de moi. C’est l’un de mes premiers souvenirs cinématographiques :
+            je devais avoir moins de six ans quand je l’ai vue. Cette trilogie m’a rapproché de mes frères aînés,
+            et autant dire que je ne pourrais pas concevoir partager ma vie avec quelqu’un qui ne l’aime pas,
+            car être avec moi signifie la voir et la revoir chaque année.
+        </p>
+
+        <button onclick="suivant()">Continuer ➜</button>
+    </div>
+</div>
+
+<script>
+    // Fonction pour nettoyer et normaliser la réponse
+    function normaliser(texte) {
+        return texte
+            .toLowerCase()
+            .normalize("NFD")               // supprime accents
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9]/g, "");    // supprime tout sauf lettres/chiffres
+    }
+
+    function verifier() {
+        const input = normaliser(document.getElementById("reponse").value);
+        const erreur = document.getElementById("erreur");
+        const detail = document.getElementById("detail");
+
+        // variantes acceptées après normalisation
+        const reponsesValides = [
+            normaliser("Le Seigneur des Anneaux"),
+            normaliser("Seigneur des Anneaux"),
+            normaliser("Lord of the Rings")
+        ];
+
+        if (reponsesValides.includes(input)) {
+            erreur.classList.add("hidden");
+            detail.classList.remove("hidden");
+        } else {
+            erreur.classList.remove("hidden");
+        }
+    }
+
+    function suivant() {
+        window.location.href = "page4.html"; // prochaine page ou finale
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Un petit jeu 🔥</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: white;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 420px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4458;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #444;
+            font-size: 16px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            background: #ff4458;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .detail {
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .error {
+            color: #ff4458;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Question 1</h1>
+    <p>Quel est mon prénom ?</p>
+
+    <input type="text" id="reponse" placeholder="Ta réponse ici">
+    <button onclick="verifier()">Valider</button>
+
+    <p class="error hidden" id="erreur">Ce n’est pas ça 👀</p>
+
+    <div class="detail hidden" id="detail">
+        <p>
+            J'admets, question pas très dure, il suffit de lire mon profil.
+            Mais attends de voir tous les surnoms que mes amis me donnent :
+            <br><br>
+            <strong>Koko, Ksong, La Cassonade, Baladi, Gunnar</strong>
+            <br><br>
+            Bref, tu entendras rarement quelqu’un m’appeler Vincent.
+        </p>
+
+        <button onclick="suivant()">Continuer ➜</button>
+    </div>
+</div>
+
+<script>
+    function verifier() {
+        const input = document.getElementById("reponse").value.toLowerCase().trim();
+        const erreur = document.getElementById("erreur");
+        const detail = document.getElementById("detail");
+
+        if (input === "vincent") {
+            erreur.classList.add("hidden");
+            detail.classList.remove("hidden");
+        } else {
+            erreur.classList.remove("hidden");
+        }
+    }
+
+    function suivant() {
+        // plus tard : page2.html
+        window.location.href = "page2.html";
+    }
+</script>
+
+</body>
+</html>
